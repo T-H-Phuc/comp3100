@@ -1,25 +1,21 @@
 import java.io.*;  
 import java.net.*;
 public class Server{
-    public static void main(String[] args) {
-        try{  
-            ServerSocket server = new ServerSocket(8080);
-            Socket socket = server.accept();
-            int messageCount = 0;
-            DataInputStream dis=new DataInputStream(socket.getInputStream());
-            DataOutputStream dout=new DataOutputStream(socket.getOutputStream());
-            String str=(String)dis.readUTF();  
-            System.out.println("message= "+str);
+    String type;
+    int id;
+    String state;
+    int curStartTime;
+    int cores;
+    int memory;
+    int disk;
 
-            dout.writeUTF("G’DAY");
-            dout.flush();
-            String str2 = (String)dis.readUTF();
-            System.out.println("message= "+str2);
-            dout.writeUTF("BYE");
-            dout.flush();
-            server.close();     
-        }catch (Exception e){
-            System.out.println(e);
-        }
-    }  
+    public Server(String type, int id, String state, int curStartTime, int cores, int memory, int disk){
+        this.type = type;
+        this.id = id;
+        this.state = state;
+        this.curStartTime = curStartTime;
+        this.cores = cores;
+        this.memory = memory;
+        this.disk = disk;
+    }
 }
